@@ -4,10 +4,13 @@ public class playerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float slideSpeed = 2f;
 
     private Rigidbody2D rb;
+
     private bool jumpPressed;
     private bool canJump = false;
+    private bool canMove = true;
 
     void Start()
     {
@@ -24,9 +27,19 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Handle horizontal movement
-        Vector2 targetVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
-        rb.linearVelocity = targetVelocity;
+        if (canMove == true)
+        {
+            // Handle horizontal movement
+            Vector2 targetVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+            rb.linearVelocity = targetVelocity;
+
+            rb.gravityScale = 1;
+        }
+        else if (canMove == false)
+        {
+            rb.gravityScale = slideSpeed;
+        }
+        
 
         // Handle jumping
         if (jumpPressed && canJump == true)
@@ -38,8 +51,14 @@ public class playerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            canMove = false;
+        }
+
         // Check if the player is colliding with platform
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall"))
         {
             canJump = true;
         }
@@ -48,8 +67,9 @@ public class playerController : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         // Reset jump ability when leaving the platform
-        if (collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall")) 
         {
+            canMove = true;
             canJump = false;
         }
     }

@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 2102747748}
   m_Layer: 3
   m_Name: A
-  m_TagString: Platform
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,8 +487,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5534322862355671814, guid: 1df89bbee0b6ce343959fe27d39fe3fe, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5534322862355671814, guid: 1df89bbee0b6ce343959fe27d39fe3fe, type: 3}
       propertyPath: wallCheck
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5534322862355671814, guid: 1df89bbee0b6ce343959fe27d39fe3fe, type: 3}
+      propertyPath: slideSpeed
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5534322862355671814, guid: 1df89bbee0b6ce343959fe27d39fe3fe, type: 3}
       propertyPath: groundCheck
