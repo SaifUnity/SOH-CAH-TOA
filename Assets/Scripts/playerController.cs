@@ -5,12 +5,14 @@ public class playerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public float slideSpeed = 2f;
+    public float leftForce = 5f;
 
     private Rigidbody2D rb;
 
-    private bool jumpPressed;
+    private bool jumpPressed = false;
     private bool canJump = false;
     private bool canMove = true;
+    private bool isSliding = false;
 
     void Start()
     {
@@ -42,9 +44,15 @@ public class playerController : MonoBehaviour
         
 
         // Handle jumping
-        if (jumpPressed && canJump == true)
+        if (jumpPressed == true && canJump == true)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            if (isSliding == true)
+            {
+                rb.AddForce(Vector2.left * leftForce, ForceMode2D.Impulse);
+            }
+
             jumpPressed = false;
         }
     }
@@ -55,6 +63,8 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             canMove = false;
+
+            isSliding = true;
         }
 
         // Check if the player is colliding with platform
@@ -71,6 +81,7 @@ public class playerController : MonoBehaviour
         {
             canMove = true;
             canJump = false;
+            isSliding = false;
         }
     }
 }
