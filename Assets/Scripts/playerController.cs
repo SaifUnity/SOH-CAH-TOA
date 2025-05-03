@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class playerController : MonoBehaviour
     public float leftForce = 5f;
     public float slideFreezeTime = 0.5f;
     public float wallPushForce = 2f;
+    public float wallJumpForce = 5f;
 
     private float originalMoveSpeed;
+    private float originalJumpForce;
 
     private Rigidbody2D rb;
 
@@ -25,6 +28,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         originalMoveSpeed = moveSpeed;
+        originalJumpForce = jumpForce;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -87,6 +91,7 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             moveSpeed = wallPushForce;
+            jumpForce = wallJumpForce;
             isTouchingWall = true;
             StartCoroutine(HandleWallCollision());
         }
@@ -120,7 +125,7 @@ public class playerController : MonoBehaviour
     {
         if (collision.CompareTag("Die"))
         {
-
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -129,6 +134,7 @@ public class playerController : MonoBehaviour
         if (other.CompareTag("Wall trigger"))
         {
             moveSpeed = originalMoveSpeed;
+            jumpForce = originalJumpForce;
         }
 
         if (other.CompareTag("Wall trigger") && isSliding == true)
