@@ -4,16 +4,29 @@ using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
-    public float slideSpeed = 2f;
-    public float leftForce = 5f;
-    public float slideFreezeTime = 0.5f;
-    public float wallPushForce = 2f;
-    public float wallJumpForce = 5f;
+    public float moveSpeed;
+    public float jumpForce;
+    public float slideSpeed;
+    public float leftForce;
+    public float slideFreezeTime;
+    public float wallPushForce;
+    public float wallJumpForce;
+    public float slopeJumpForce;
+
+    public float sohX;
+    public float cahX;
+    public float toaX;
+    public float sohY;
+    public float cahY;
+    public float toaY;
+
+    public GameObject sohPrefab;
+    public GameObject cahPrefab;
+    public GameObject toaPrefab;
 
     private float originalMoveSpeed;
     private float originalJumpForce;
+    private int instantiateNumber;
 
     private Rigidbody2D rb;
 
@@ -96,7 +109,17 @@ public class playerController : MonoBehaviour
             StartCoroutine(HandleWallCollision());
         }
 
-        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Slope"))
+        {
+            jumpForce = slopeJumpForce;
+        }
+
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            jumpForce = originalJumpForce;
+        }
+
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Slope"))
         {
             canJump = true;
         }
@@ -105,7 +128,7 @@ public class playerController : MonoBehaviour
     {
         isAirborne = true;
         // Reset jump ability when leaving the platform
-        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall")) 
+        if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Slope")) 
         {
             canMove = true;
             canJump = false;
@@ -118,7 +141,15 @@ public class playerController : MonoBehaviour
         isFrozen = true;
         yield return new WaitForSeconds(slideFreezeTime);
         isFrozen = false;
-        isSliding = true;
+        yield return new WaitForSeconds(slideFreezeTime);
+        if (isAirborne == true)
+        {
+            isSliding = false;
+        }
+        else if (isAirborne == false)
+        {
+            isSliding = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -126,6 +157,25 @@ public class playerController : MonoBehaviour
         if (collision.CompareTag("Die"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
+        if (collision.CompareTag("Next"))
+        {
+            instantiateNumber = Random.Range(1, 4);
+            
+            if (instantiateNumber == 1)
+            {
+                Instantiate(sohPrefab, new Vector2(transform.position.x + sohX, sohY), Quaternion.identity);
+            }
+            else if (instantiateNumber == 2)
+            {
+                Instantiate(cahPrefab, new Vector2(transform.position.x + cahX, cahY), Quaternion.identity);
+            }
+            else if (instantiateNumber == 3)
+            {
+                Instantiate(toaPrefab, new Vector2(transform.position.x + toaX, toaY), Quaternion.identity);
+            }
         }
     }
 
@@ -141,5 +191,6 @@ public class playerController : MonoBehaviour
         {
             moveSpeed = 0;
         }
+        
     }
 }

@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Wall trigger
   - Die
+  - Next
+  - Destroyer
+  - Slope
   layers:
   - Default
   - TransparentFX
