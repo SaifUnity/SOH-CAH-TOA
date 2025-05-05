@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
+
+    public timeManager timeManager;
+
     public float moveSpeed;
     public float jumpForce;
     public float slideSpeed;
@@ -37,6 +40,7 @@ public class playerController : MonoBehaviour
     private bool isFrozen = false;
     private bool isTouchingWall = false;
     private bool isAirborne = true;
+    private bool timeHasFrozen = false;
 
     void Start()
     {
@@ -176,6 +180,16 @@ public class playerController : MonoBehaviour
             {
                 Instantiate(toaPrefab, new Vector2(transform.position.x + toaX, toaY), Quaternion.identity);
             }
+        }
+
+        if (collision.CompareTag("TimeSlow"))
+        {
+            timeManager.SlowTime();
+            if (timeHasFrozen == false)
+            {
+                leftForce = leftForce * 11f;
+            }
+            timeHasFrozen = true;
         }
     }
 

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcb29e76b0b024fbef93559c5cc1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeManager: {fileID: 0}
   moveSpeed: 4.5
   jumpForce: 5
   slideSpeed: 0.2
@@ -174,7 +175,7 @@ MonoBehaviour:
   slideFreezeTime: 0.2
   wallPushForce: 2
   wallJumpForce: 6.5
-  slopeJumpForce: 3
+  slopeJumpForce: 2.6
   sohX: 19.42
   cahX: 19.38
   toaX: 19.24
