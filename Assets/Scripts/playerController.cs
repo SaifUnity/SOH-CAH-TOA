@@ -35,6 +35,9 @@ public class playerController : MonoBehaviour
     public GameObject cahPrefab;
     public GameObject toaPrefab;
 
+    public Transform desiredLocation;
+    public float desiredLocationX;
+
     private float originalMoveSpeed;
     private float originalJumpForce;
     private int instantiateNumber;
@@ -238,7 +241,7 @@ public class playerController : MonoBehaviour
             }
             timeHasFrozen = true;
             timeManager.Instance.timeSlowDuration = timeManager.Instance.timeSlowDuration * 0.97f;
-            
+            desiredLocation.position = new Vector3(desiredLocation.position.x + desiredLocationX, 0, -10f);
         }
     }
 
