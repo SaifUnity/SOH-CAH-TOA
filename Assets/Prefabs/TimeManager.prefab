@@ -46,9 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScaleFactor: 0.02
   musicSlowFactor: 0.7
+  backgroundBrightnessFactor: 0.5
+  brightness: 1
   transitionSpeedEnter: 0.5
   transitionSpeedExit: 1
   timeDecreaseFactor: 0.5
-  timeSlowDuration: 5.5
+  timeSlowDuration: 7
   timeSlowCap: 1
   gameMusic: {fileID: 0}
+  sohPrefab: {fileID: 6008543725197563199, guid: be3b76c2fd5089d40a7c66e3d661b0be, type: 3}
+  cahPrefab: {fileID: 2378167901166339300, guid: 9e5bd80eb63e62d42ad64273291a05f0, type: 3}
+  toaPrefab: {fileID: 8400087915100322827, guid: 06c20e7e32d4af441b0f81b1558018ee, type: 3}

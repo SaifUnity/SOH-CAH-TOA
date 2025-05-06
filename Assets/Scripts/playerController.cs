@@ -16,12 +16,20 @@ public class playerController : MonoBehaviour
     public float wallJumpForce;
     public float slopeJumpForce;
 
-    public float sohX;
-    public float cahX;
-    public float toaX;
-    public float sohY;
-    public float cahY;
-    public float toaY;
+    public float sinASin;
+    public float sinACos;
+    public float sinATan;
+    public float cosASin;
+    public float cosACos;
+    public float cosATan;
+    public float tanASin;
+    public float tanACos;
+    public float tanATan;
+
+
+    public float fabX;
+    public float fabY;
+    
 
     public GameObject sohPrefab;
     public GameObject cahPrefab;
@@ -41,6 +49,8 @@ public class playerController : MonoBehaviour
     private bool isTouchingWall = false;
     private bool isAirborne = true;
     private bool timeHasFrozen = false;
+
+    private float a = 1;
 
     void Start()
     {
@@ -167,18 +177,55 @@ public class playerController : MonoBehaviour
         if (collision.CompareTag("Next"))
         {
             instantiateNumber = Random.Range(1, 4);
-            
-            if (instantiateNumber == 1)
+
+            if (instantiateNumber == 1 && a == 1)
             {
-                Instantiate(sohPrefab, new Vector2(transform.position.x + sohX, sohY), Quaternion.identity);
+                Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinASin), fabY), Quaternion.identity);
+                a = 1;
             }
-            else if (instantiateNumber == 2)
+            else if (instantiateNumber == 1 && a == 2)
             {
-                Instantiate(cahPrefab, new Vector2(transform.position.x + cahX, cahY), Quaternion.identity);
+                Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinACos), fabY), Quaternion.identity);
+                a = 1;
             }
-            else if (instantiateNumber == 3)
+            else if (instantiateNumber == 1 && a == 3)
             {
-                Instantiate(toaPrefab, new Vector2(transform.position.x + toaX, toaY), Quaternion.identity);
+                Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinATan), fabY), Quaternion.identity);
+                a = 1;
+            }
+
+
+            else if (instantiateNumber == 2 && a == 1)
+            {
+                Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosASin), fabY), Quaternion.identity);
+                a = 2;
+            }
+            else if (instantiateNumber == 2 && a == 2)
+            {
+                Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosACos), fabY), Quaternion.identity);
+                a = 2;
+            }
+            else if (instantiateNumber == 2 && a == 3)
+            {
+                Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosATan), fabY), Quaternion.identity);
+                a = 2;
+            }
+
+
+            else if (instantiateNumber == 3 && a == 1)
+            {
+                Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanASin), fabY), Quaternion.identity);
+                a = 3;
+            }
+            else if (instantiateNumber == 3 && a == 2)
+            {
+                Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanACos), fabY), Quaternion.identity);
+                a = 3;
+            }
+            else if (instantiateNumber == 3 && a == 3)
+            {
+                Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanATan), fabY), Quaternion.identity);
+                a = 3;
             }
         }
 
@@ -190,6 +237,8 @@ public class playerController : MonoBehaviour
                 leftForce = leftForce * 11f;
             }
             timeHasFrozen = true;
+            timeManager.Instance.timeSlowDuration = timeManager.Instance.timeSlowDuration * 0.97f;
+            
         }
     }
 

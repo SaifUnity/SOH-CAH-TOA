@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcb29e76b0b024fbef93559c5cc1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManager: {fileID: 0}
+  timeManager: {fileID: 7288410342580920842, guid: 2a64c7d40358a7a4899a5c861d7485dd, type: 3}
   moveSpeed: 4.5
   jumpForce: 5
   slideSpeed: 0.2
@@ -176,15 +176,20 @@ MonoBehaviour:
   wallPushForce: 2
   wallJumpForce: 6.5
   slopeJumpForce: 2.6
-  sohX: 19.42
-  cahX: 19.38
-  toaX: 19.24
-  sohY: 0
-  cahY: 1.22
-  toaY: 0.02
-  sohPrefab: {fileID: 1412972563481750049, guid: 5edf3892bb5f83e42bfde8e82fefe692, type: 3}
-  cahPrefab: {fileID: 8015798057122425190, guid: 7c9233638fe6853479d1dfb22021f677, type: 3}
-  toaPrefab: {fileID: 1757397444544074254, guid: 0534e3fe1406eea489206890a62df219, type: 3}
+  sinASin: -0.52
+  sinACos: -0.1
+  sinATan: 0.13
+  cosASin: -0.54
+  cosACos: -0.17
+  cosATan: 0.03
+  tanASin: -0.5
+  tanACos: -0.1
+  tanATan: 0.2
+  fabX: 19
+  fabY: 0.1
+  sohPrefab: {fileID: 7132987856195247067, guid: 3b2e5b31c680e7f4a8a244579826b494, type: 3}
+  cahPrefab: {fileID: 8607976995743365436, guid: ce9fa722521c59d4fa84695e8a51631d, type: 3}
+  toaPrefab: {fileID: 8435179072276941539, guid: 7696b93e416ef844b9cce4e147ba0526, type: 3}
 --- !u!1 &8454542471123225737
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +202,7 @@ GameObject:
   - component: {fileID: 2109835245703168095}
   - component: {fileID: 6188848837961817210}
   - component: {fileID: 5419442901177169371}
-  - component: {fileID: 2390223524347392434}
+  - component: {fileID: 1080229435166008447}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Destroyer
@@ -348,7 +353,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2390223524347392434
+--- !u!114 &1080229435166008447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class timeManager : MonoBehaviour
 {
+
+    public static timeManager Instance { get; private set; }
+
+
     public float timeScaleFactor = 0.05f;
     public float musicSlowFactor = 0.5f;
+    public float backgroundBrightnessFactor = 0.5f;
+
+    public float brightness = 1f;
 
     public float transitionSpeedEnter = 0.5f;
     public float transitionSpeedExit = 1f;
@@ -14,7 +21,23 @@ public class timeManager : MonoBehaviour
 
     public AudioSource gameMusic;
 
+    public SpriteRenderer sohPrefab;
+    public SpriteRenderer cahPrefab;
+    public SpriteRenderer toaPrefab;
+
     private bool isTimeSlowed = false;
+
+    void Awake()
+    {
+        // Ensure only one instance exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     void Update()
     {
 
@@ -25,6 +48,7 @@ public class timeManager : MonoBehaviour
         {
             isTimeSlowed = false;
         }
+
 
         if (isTimeSlowed == false)
         {
@@ -42,18 +66,31 @@ public class timeManager : MonoBehaviour
             isTimeSlowed = false;
         }
 
+
         if (isTimeSlowed == false)
         {
-            gameMusic.pitch += (1f / transitionSpeedExit) * Time.unscaledDeltaTime;
-            gameMusic.pitch = Mathf.Clamp(gameMusic.pitch, 0.1f, 1f);
+         gameMusic.pitch += (1f / transitionSpeedExit) * Time.unscaledDeltaTime;
+        gameMusic.pitch = Mathf.Clamp(gameMusic.pitch, 0.1f, 1f);   
         }
 
         if (isTimeSlowed == true)
         {
-            gameMusic.pitch -= (1f / transitionSpeedEnter) * Time.unscaledDeltaTime;
-            gameMusic.pitch = Mathf.Clamp(gameMusic.pitch, musicSlowFactor, 1f);
+           gameMusic.pitch -= (1f / transitionSpeedEnter) * Time.unscaledDeltaTime;
+            gameMusic.pitch = Mathf.Clamp(gameMusic.pitch, musicSlowFactor, 1f); 
         }
-        
+
+
+        if (isTimeSlowed == false)
+        {
+            brightness += (1f / transitionSpeedExit) * Time.unscaledDeltaTime;
+            brightness = Mathf.Clamp(brightness,backgroundBrightnessFactor , 1f);
+        }
+
+        if (isTimeSlowed == true)
+        {
+            brightness -= (1f / transitionSpeedEnter) * Time.unscaledDeltaTime;
+            brightness = Mathf.Clamp(brightness, backgroundBrightnessFactor, 1f);
+        }
     }
 
     public void SlowTime()
