@@ -36,7 +36,18 @@ public class playerController : MonoBehaviour
     public GameObject toaPrefab;
 
     public Transform desiredLocation;
-    public float desiredLocationX;
+
+    public float normalOffset = 18;
+
+    public float camSinASin;
+    public float camSinACos;
+    public float camSinATan;
+    public float camCosASin;
+    public float camCosACos;
+    public float camCosATan;
+    public float camTanASin;
+    public float camTanACos;
+    public float camTanATan;
 
     private float originalMoveSpeed;
     private float originalJumpForce;
@@ -184,51 +195,42 @@ public class playerController : MonoBehaviour
             if (instantiateNumber == 1 && a == 1)
             {
                 Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinASin), fabY), Quaternion.identity);
-                a = 1;
             }
             else if (instantiateNumber == 1 && a == 2)
             {
                 Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinACos), fabY), Quaternion.identity);
-                a = 1;
             }
             else if (instantiateNumber == 1 && a == 3)
             {
                 Instantiate(sohPrefab, new Vector2(transform.position.x + (fabX + sinATan), fabY), Quaternion.identity);
-                a = 1;
             }
 
 
             else if (instantiateNumber == 2 && a == 1)
             {
                 Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosASin), fabY), Quaternion.identity);
-                a = 2;
             }
             else if (instantiateNumber == 2 && a == 2)
             {
                 Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosACos), fabY), Quaternion.identity);
-                a = 2;
             }
             else if (instantiateNumber == 2 && a == 3)
             {
                 Instantiate(cahPrefab, new Vector2(transform.position.x + (fabX + cosATan), fabY), Quaternion.identity);
-                a = 2;
             }
 
 
             else if (instantiateNumber == 3 && a == 1)
             {
                 Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanASin), fabY), Quaternion.identity);
-                a = 3;
             }
             else if (instantiateNumber == 3 && a == 2)
             {
                 Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanACos), fabY), Quaternion.identity);
-                a = 3;
             }
             else if (instantiateNumber == 3 && a == 3)
             {
                 Instantiate(toaPrefab, new Vector2(transform.position.x + (fabX + tanATan), fabY), Quaternion.identity);
-                a = 3;
             }
         }
 
@@ -241,7 +243,54 @@ public class playerController : MonoBehaviour
             }
             timeHasFrozen = true;
             timeManager.Instance.timeSlowDuration = timeManager.Instance.timeSlowDuration * 0.97f;
-            desiredLocation.position = new Vector3(desiredLocation.position.x + desiredLocationX, 0, -10f);
+            
+            if (a == 1 && instantiateNumber == 1)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camSinASin + normalOffset, 0, -10f);
+                a = 1;
+            }
+            else if (a == 1 && instantiateNumber == 2)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camCosASin + normalOffset, 0, -10f);
+                a = 2;
+            }
+            else if (a == 1 && instantiateNumber == 3)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camTanASin + normalOffset, 0, -10f);
+                a = 3;
+            }
+
+            else if (a == 2 && instantiateNumber == 1)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camSinACos + normalOffset, 0, -10f);
+                a = 1;
+            }
+            else if (a == 2 && instantiateNumber == 2)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camCosACos + normalOffset, 0, -10f);
+                a = 2;
+            }
+            else if (a == 2 && instantiateNumber == 3)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camTanACos + normalOffset, 0, -10f);
+                a = 3;
+            }
+
+            else if (a == 3 && instantiateNumber == 1)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camSinATan + normalOffset, 0, -10f);
+                a = 1;
+            }
+            else if (a == 3 && instantiateNumber == 2)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camCosATan + normalOffset, 0, -10f);
+                a = 2;
+            }
+            else if (a == 3 && instantiateNumber == 3)
+            {
+                desiredLocation.position = new Vector3(desiredLocation.position.x + camTanATan + normalOffset, 0, -10f);
+                a = 3;
+            }
         }
     }
 

@@ -167,29 +167,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcb29e76b0b024fbef93559c5cc1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManager: {fileID: 7288410342580920842, guid: 2a64c7d40358a7a4899a5c861d7485dd, type: 3}
+  timeManager: {fileID: 0}
   moveSpeed: 4.5
   jumpForce: 5
   slideSpeed: 0.2
   leftForce: 15
   slideFreezeTime: 0.2
   wallPushForce: 2
-  wallJumpForce: 6.5
+  wallJumpForce: 7
   slopeJumpForce: 2.6
-  sinASin: -0.52
-  sinACos: -0.1
-  sinATan: 0.13
+  sinASin: -0.44
+  sinACos: 0.19
+  sinATan: 0.19
   cosASin: -0.54
-  cosACos: -0.17
-  cosATan: 0.03
-  tanASin: -0.5
-  tanACos: -0.1
+  cosACos: 0.03
+  cosATan: 0.08
+  tanASin: -0.42
+  tanACos: 0.24
   tanATan: 0.2
   fabX: 19
   fabY: 0.1
   sohPrefab: {fileID: 7132987856195247067, guid: 3b2e5b31c680e7f4a8a244579826b494, type: 3}
   cahPrefab: {fileID: 8607976995743365436, guid: ce9fa722521c59d4fa84695e8a51631d, type: 3}
   toaPrefab: {fileID: 8435179072276941539, guid: 7696b93e416ef844b9cce4e147ba0526, type: 3}
+  desiredLocation: {fileID: 0}
+  normalOffset: 17.93
+  camSinASin: 0.15
+  camSinACos: 0.15
+  camSinATan: 0.03
+  camCosASin: 0.07
+  camCosACos: 0
+  camCosATan: 0.09
+  camTanASin: 0.08
+  camTanACos: 0.15
+  camTanATan: 0.05
 --- !u!1 &8454542471123225737
 GameObject:
   m_ObjectHideFlags: 0
