@@ -192,14 +192,14 @@ MonoBehaviour:
   toaPrefab: {fileID: 8435179072276941539, guid: 7696b93e416ef844b9cce4e147ba0526, type: 3}
   desiredLocation: {fileID: 0}
   normalOffset: 17.93
-  camSinASin: 0.15
+  camSinASin: 0.14
   camSinACos: 0.15
-  camSinATan: 0.03
-  camCosASin: 0.07
+  camSinATan: 0.05
+  camCosASin: 0.06
   camCosACos: 0
-  camCosATan: 0.09
-  camTanASin: 0.08
-  camTanACos: 0.15
+  camCosATan: 0.08
+  camTanASin: 0.07
+  camTanACos: 0.12
   camTanATan: 0.05
 --- !u!1 &8454542471123225737
 GameObject:
